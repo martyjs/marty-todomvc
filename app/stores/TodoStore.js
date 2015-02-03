@@ -60,9 +60,9 @@ var TodoStore = Marty.createStore({
     this.update(id, { complete: true });
   },
   updateText: function (id, text) {
-    text = action.text.trim();
+    text = text.trim();
     if (text !== '') {
-      this.update(action.id, {text: text});
+      this.update(id, {text: text});
     }
   },
 

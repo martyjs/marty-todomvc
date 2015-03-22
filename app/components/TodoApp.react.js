@@ -19,29 +19,29 @@ var Header = require('./Header.react');
 var MainSection = require('./MainSection.react');
 var TodoStore = require('../stores/TodoStore');
 
-var TodoAppState = Marty.createStateMixin({
-  allTodos: TodoStore,
-  getState: function () {
-    return {
-      areAllComplete: TodoStore.areAllComplete()
-    };
-  }
-});
-
 var TodoApp = React.createClass({
-  mixins: [TodoAppState],
   render: function() {
   	return (
       <div>
         <Header />
         <MainSection
-          allTodos={this.state.allTodos}
-          areAllComplete={this.state.areAllComplete}
+          allTodos={this.props.allTodos}
+          areAllComplete={this.props.areAllComplete}
         />
-        <Footer allTodos={this.state.allTodos} />
+        <Footer allTodos={this.props.allTodos} />
       </div>
   	);
   }
 });
 
-module.exports = TodoApp;
+module.exports = Marty.createContainer(TodoApp, {
+  listenTo: TodoStore,
+  fetch: {
+    allTodos() {
+      return TodoStore.getState()
+    },
+    areAllComplete() {
+      return TodoStore.areAllComplete()
+    }
+  }
+});

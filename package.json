@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "js/app.js",
   "dependencies": {
+    "classnames": "^1.2.0",
     "lodash": "^3.5.0",
     "marty": "^0.9.0",
     "react": "^0.13.0"
@@ -14,8 +15,7 @@
   },
   "browserify": {
     "transform": [
-      "babelify",
-      "envify"
+      "babelify"
     ]
   }
 }

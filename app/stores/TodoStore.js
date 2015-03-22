@@ -9,11 +9,12 @@
  * TodoStore
  */
 
+var _ = require('lodash');
 var Marty = require('marty');
-var extend = require('lodash-node/modern/objects/assign');
 var TodoConstants = require('../constants/TodoConstants');
 
 var TodoStore = Marty.createStore({
+  id: 'TodoStore',
   handlers: {
     create: TodoConstants.TODO_CREATE,
     toggleComplete: TodoConstants.TODO_TOGGLE_COMPLETE_ALL,
@@ -73,7 +74,7 @@ var TodoStore = Marty.createStore({
    *     updated.
    */
   update: function (id, props) {
-    this.state[id] = extend({}, this.state[id], props);
+    this.state[id] = _.extend({}, this.state[id], props);
     this.hasChanged();
   },
 

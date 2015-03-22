@@ -14,6 +14,7 @@ var TodoConstants = require('../constants/TodoConstants');
 
 
 var TodoActions = Marty.createActionCreators({
+  id: 'TodoActions',
 
   /**
    * @param  {string} text

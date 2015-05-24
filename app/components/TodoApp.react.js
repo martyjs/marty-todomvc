@@ -17,7 +17,6 @@ var Marty = require('marty');
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
 var MainSection = require('./MainSection.react');
-var TodoStore = require('../stores/TodoStore');
 
 var TodoApp = React.createClass({
   render: function() {
@@ -35,13 +34,13 @@ var TodoApp = React.createClass({
 });
 
 module.exports = Marty.createContainer(TodoApp, {
-  listenTo: TodoStore,
+  listenTo: 'todoStore',
   fetch: {
     allTodos() {
-      return TodoStore.getState()
+      return this.app.todoStore.getState();
     },
     areAllComplete() {
-      return TodoStore.areAllComplete()
+      return this.app.todoStore.areAllComplete();
     }
   }
 });

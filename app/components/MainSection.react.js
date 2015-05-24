@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+var Marty = require('marty');
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
 var TodoItem = require('./TodoItem.react');
 
 var MainSection = React.createClass({
@@ -54,9 +54,9 @@ var MainSection = React.createClass({
    * Event handler to mark all TODOs as complete
    */
   _onToggleCompleteAll: function() {
-    TodoActions.toggleCompleteAll();
+    this.app.todoActions.toggleCompleteAll();
   }
 
 });
 
-module.exports = MainSection;
+module.exports = Marty.createContainer(MainSection);

@@ -7,10 +7,10 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+var Marty = require('marty');
 var React = require('react');
 var cx = require('classnames');
 var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
 var TodoTextInput = require('./TodoTextInput.react');
 
 
@@ -72,7 +72,7 @@ var TodoItem = React.createClass({
   },
 
   _onToggleComplete: function() {
-    TodoActions.toggleComplete(this.props.todo);
+    this.app.todoActions.toggleComplete(this.props.todo);
   },
 
   _onDoubleClick: function() {
@@ -86,14 +86,14 @@ var TodoItem = React.createClass({
    * @param  {string} text
    */
   _onSave: function(text) {
-    TodoActions.updateText(this.props.todo.id, text);
+    this.app.todoActions.updateText(this.props.todo.id, text);
     this.setState({isEditing: false});
   },
 
   _onDestroyClick: function() {
-    TodoActions.destroy(this.props.todo.id);
+    this.app.todoActions.destroy(this.props.todo.id);
   }
 
 });
 
-module.exports = TodoItem;
+module.exports = Marty.createContainer(TodoItem);

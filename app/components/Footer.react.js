@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+var Marty = require('marty');
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
 
 var Footer = React.createClass({
 
@@ -67,9 +67,9 @@ var Footer = React.createClass({
    * Event handler to delete all completed TODOs
    */
   _onClearCompletedClick: function() {
-    TodoActions.destroyCompleted();
+    this.app.todoActions.destroyCompleted();
   }
 
 });
 
-module.exports = Footer;
+module.exports = Marty.createContainer(Footer);
